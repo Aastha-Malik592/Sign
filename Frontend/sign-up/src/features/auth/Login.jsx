@@ -2,13 +2,13 @@ import React from 'react'
 
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import AuthLayout from "../layouts/AuthLayout";
+import AuthLayout from "../../layouts/AuthLayout";
 const apiUrl = import.meta.env.VITE_API_URL;
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "../val/auth-schema";
+import { loginSchema } from "./auth-schema";
 import { useDispatch } from "react-redux";
-import { loginSuccess } from "../redux/auth-slice";
+import { loginSuccess } from "./auth-slice";
 import toast from "react-hot-toast";
 const Login = () => {
   const {
@@ -49,7 +49,7 @@ if (response.data.token) {
 
  }; 
  return (
-  <AuthLayout>
+
     <form onSubmit={handleSubmit(handleLogin)}>
 
       <h1>Welcome Back</h1>
@@ -90,7 +90,7 @@ if (response.data.token) {
       </div>
 
     </form>
-  </AuthLayout>
+  
 );
 };
 

@@ -1,10 +1,10 @@
 import React from 'react'
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import AuthLayout from '../layouts/AuthLayout';
+import AuthLayout from "../../layouts/AuthLayout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signupSchema } from "../val/auth-schema";
+import { signupSchema } from "./auth-schema";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const Signup = () => {
@@ -33,7 +33,7 @@ const handleSignup = async (data) => {
   }
 };
  return (
-  <AuthLayout>
+
     <form onSubmit={handleSubmit(handleSignup)}>
 
       <h1>Create Account</h1>
@@ -83,7 +83,7 @@ const handleSignup = async (data) => {
       </div>
 
     </form>
-  </AuthLayout>
+  
 );
 };
 

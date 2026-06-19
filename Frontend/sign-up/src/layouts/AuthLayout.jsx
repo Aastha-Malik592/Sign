@@ -1,7 +1,7 @@
 import React from 'react'
+import { Outlet, useNavigate } from "react-router-dom";
 
- import { useNavigate } from "react-router-dom";
-const AuthLayout = ({children}) => {
+const AuthLayout = () => {
     const navigate = useNavigate();
   return (
    
@@ -22,7 +22,7 @@ const AuthLayout = ({children}) => {
     Back
           </button>
           
-        {children}
+       <Outlet />
 
 
         <button className="google-btn">
