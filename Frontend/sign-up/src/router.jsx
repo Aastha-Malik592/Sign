@@ -1,10 +1,6 @@
 import React from "react";
-import './App.css'
-import {
-createBrowserRouter,
-RouterProvider
-} from "react-router-dom";
-
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Login from "./pages/login";
 import Signup from "./pages/signup";
@@ -19,85 +15,56 @@ import FavoriteRecipes from "./pages/favorite-recipes";
 
 import ProtectedRoute from "./layouts/protected-route";
 
+const Router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />,
+  },
 
+  {
+    path: "/",
+    element: <Signup />,
+  },
 
-const Router=createBrowserRouter([
+  {
+    path: "/home",
 
+    element: (
+      <ProtectedRoute>
+        <Home />
+      </ProtectedRoute>
+    ),
+  },
 
-{
-path:"/login",
-element:<Login/>
-},
+  {
+    path: "/create-recipe",
 
+    element: (
+      <ProtectedRoute>
+        <CreateRecipe />
+      </ProtectedRoute>
+    ),
+  },
 
-{
-path:"/",
-element:<Signup/>
-},
+  {
+    path: "/edit-recipe/:id",
 
+    element: (
+      <ProtectedRoute>
+        <EditRecipe />
+      </ProtectedRoute>
+    ),
+  },
 
+  {
+    path: "/favorites",
 
-{
-path:"/home",
-
-element:
-
-<ProtectedRoute>
-
-<Home/>
-
-</ProtectedRoute>
-
-},
-
-
-
-{
-path:"/create-recipe",
-
-element:
-
-<ProtectedRoute>
-
-<CreateRecipe/>
-
-</ProtectedRoute>
-
-},
-
-
-
-{
-path:"/edit-recipe/:id",
-
-element:
-
-<ProtectedRoute>
-
-<EditRecipe/>
-
-</ProtectedRoute>
-
-},
-
-
-
-{
-path:"/favorites",
-
-element:
-
-<ProtectedRoute>
-
-<FavoriteRecipes/>
-
-</ProtectedRoute>
-
-}
-
-
+    element: (
+      <ProtectedRoute>
+        <FavoriteRecipes />
+      </ProtectedRoute>
+    ),
+  },
 ]);
-
-
 
 export default Router;

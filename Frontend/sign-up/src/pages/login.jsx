@@ -53,9 +53,7 @@ const Login = () => {
               {...register("email")}
             />
 
-            {errors.email && (
-              <p>{errors.email.message}</p>
-            )}
+            {errors.email && <p>{errors.email.message}</p>}
 
             <input
               type="password"
@@ -63,22 +61,15 @@ const Login = () => {
               {...register("password")}
             />
 
-            {errors.password && (
-              <p>{errors.password.message}</p>
-            )}
+            {errors.password && <p>{errors.password.message}</p>}
 
-            <button
-              className="auth-btn"
-              type="submit"
-            >
+            <button className="auth-btn" type="submit">
               Login
             </button>
 
             <div className="bottom-link">
               Don't have an account?
-              <Link to="/signup">
-                {" "}Sign Up
-              </Link>
+              <Link to="/signup"> Sign Up</Link>
             </div>
           </form>
         </div>

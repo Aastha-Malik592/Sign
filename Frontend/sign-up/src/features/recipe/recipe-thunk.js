@@ -1,295 +1,146 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
+const getToken = (state) => state.auth.token;
 
+export const createRecipeThunk = createAsyncThunk(
+  "recipe/create",
 
-const getToken = (state)=>
-state.auth.token;
+  async (data, { rejectWithValue, getState }) => {
+    try {
+      const response = await axios.post(
+        `${apiUrl}/api/recipes/create`,
 
+        data,
 
+        {
+          headers: {
+            Authorization: `Bearer ${getToken(getState())}`,
+          },
+        },
+      );
 
-
-export const createRecipeThunk =
-createAsyncThunk(
-
-"recipe/create",
-
-async(data,{rejectWithValue,getState})=>{
-
-try{
-
-
-const response =
-await axios.post(
-
-`${apiUrl}/api/recipes/create`,
-
-data,
-
-{
-headers:{
-Authorization:
-`Bearer ${getToken(getState())}`
-}
-}
-
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message);
+    }
+  },
 );
 
+export const getRecipesThunk = createAsyncThunk(
+  "recipe/get",
 
-return response.data;
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const response = await axios.get(
+        `${apiUrl}/api/recipes`,
 
+        {
+          headers: {
+            Authorization: `Bearer ${getToken(getState())}`,
+          },
+        },
+      );
 
-}
-catch(error){
-
-return rejectWithValue(
-error.response?.data?.message
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message);
+    }
+  },
 );
 
-}
+export const deleteRecipeThunk = createAsyncThunk(
+  "recipe/delete",
 
+  async (id, { rejectWithValue, getState }) => {
+    try {
+      await axios.delete(
+        `${apiUrl}/api/recipes/${id}`,
 
-}
+        {
+          headers: {
+            Authorization: `Bearer ${getToken(getState())}`,
+          },
+        },
+      );
 
+      return id;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message);
+    }
+  },
 );
 
+export const updateRecipeThunk = createAsyncThunk(
+  "recipe/update",
 
+  async ({ id, data }, { rejectWithValue, getState }) => {
+    try {
+      const response = await axios.put(
+        `${apiUrl}/api/recipes/${id}`,
 
+        data,
 
+        {
+          headers: {
+            Authorization: `Bearer ${getToken(getState())}`,
+          },
+        },
+      );
 
-export const getRecipesThunk =
-createAsyncThunk(
-
-"recipe/get",
-
-async(_,{rejectWithValue,getState})=>{
-
-
-try{
-
-
-const response =
-await axios.get(
-
-`${apiUrl}/api/recipes`,
-
-{
-headers:{
-Authorization:
-`Bearer ${getToken(getState())}`
-}
-}
-
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message);
+    }
+  },
 );
 
+export const favoriteRecipeThunk = createAsyncThunk(
+  "recipe/favorite",
 
-return response.data;
+  async (id, { rejectWithValue, getState }) => {
+    try {
+      const response = await axios.patch(
+        `${apiUrl}/api/recipes/favorite/${id}`,
 
+        {},
 
-}
-catch(error){
+        {
+          headers: {
+            Authorization: `Bearer ${getToken(getState())}`,
+          },
+        },
+      );
 
-return rejectWithValue(
-error.response?.data?.message
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message);
+    }
+  },
 );
-
-}
-
-
-}
-
-);
-
-
-
-
-
-export const deleteRecipeThunk =
-createAsyncThunk(
-
-"recipe/delete",
-
-async(id,{rejectWithValue,getState})=>{
-
-
-try{
-
-
-await axios.delete(
-
-`${apiUrl}/api/recipes/${id}`,
-
-{
-headers:{
-Authorization:
-`Bearer ${getToken(getState())}`
-}
-}
-
-);
-
-
-return id;
-
-
-}
-catch(error){
-
-return rejectWithValue(
-error.response?.data?.message
-);
-
-}
-
-
-}
-
-);
-
-
-
-
-
-export const updateRecipeThunk =
-createAsyncThunk(
-
-"recipe/update",
-
-async({id,data},{rejectWithValue,getState})=>{
-
-
-try{
-
-
-const response =
-await axios.put(
-
-`${apiUrl}/api/recipes/${id}`,
-
-data,
-
-{
-headers:{
-Authorization:
-`Bearer ${getToken(getState())}`
-}
-}
-
-);
-
-
-return response.data;
-
-
-}
-catch(error){
-
-return rejectWithValue(
-error.response?.data?.message
-);
-
-}
-
-
-}
-
-);
-
-
-
-
-
-export const favoriteRecipeThunk =
-createAsyncThunk(
-
-"recipe/favorite",
-
-async(id,{rejectWithValue,getState})=>{
-
-
-try{
-
-
-const response =
-await axios.patch(
-
-`${apiUrl}/api/recipes/favorite/${id}`,
-
-{},
-
-{
-headers:{
-Authorization:
-`Bearer ${getToken(getState())}`
-}
-}
-
-);
-
-
-return response.data;
-
-
-}
-catch(error){
-
-return rejectWithValue(
-error.response?.data?.message
-);
-
-}
-
-
-}
-
-);
-
-
 
 // FAVORITE LIST
 
-export const getFavoriteRecipesThunk =
-createAsyncThunk(
+export const getFavoriteRecipesThunk = createAsyncThunk(
+  "recipe/favorites",
 
-"recipe/favorites",
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const response = await axios.get(
+        `${apiUrl}/api/recipes/favorites`,
 
-async(_,{rejectWithValue,getState})=>{
+        {
+          headers: {
+            Authorization: `Bearer ${getToken(getState())}`,
+          },
+        },
+      );
 
-
-try{
-
-
-const response =
-await axios.get(
-
-`${apiUrl}/api/recipes/favorites`,
-
-{
-headers:{
-Authorization:
-`Bearer ${getToken(getState())}`
-}
-}
-
-);
-
-
-return response.data;
-
-
-}
-catch(error){
-
-return rejectWithValue(
-error.response?.data?.message
-);
-
-}
-
-
-}
-
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message);
+    }
+  },
 );

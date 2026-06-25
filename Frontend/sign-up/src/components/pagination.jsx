@@ -1,69 +1,21 @@
 import React from "react";
 
+const Pagination = ({ page, setPage, totalPages }) => {
+  return (
+    <div>
+      <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+        Prev
+      </button>
 
-const Pagination=({
-page,
-setPage,
-totalPages
-})=>{
+      <span>
+        {page}/{totalPages}
+      </span>
 
-
-return (
-
-<div>
-
-
-<button
-
-disabled={page===1}
-
-onClick={()=>
-setPage(page-1)
-}
-
->
-
-Prev
-
-</button>
-
-
-
-<span>
-
-{page}
-
-/
-
-{totalPages}
-
-</span>
-
-
-
-<button
-
-disabled={
-page===totalPages
-}
-
-onClick={()=>
-setPage(page+1)
-}
-
->
-
-Next
-
-</button>
-
-
-</div>
-
-);
-
-
+      <button disabled={page === totalPages} onClick={() => setPage(page + 1)}>
+        Next
+      </button>
+    </div>
+  );
 };
-
 
 export default Pagination;

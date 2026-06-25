@@ -28,86 +28,52 @@ const Signup = () => {
       toast.error(result.payload || "Signup failed");
     }
   };
-return (
-  <div className="authContainer">
-    <div className="left-side">
-      <img
-        src="https://images.unsplash.com/photo-1556911220-bff31c812dba"
-        alt="Recipe"
-      />
-    </div>
+  return (
+    <div className="authContainer">
+      <div className="left-side">
+        <img
+          src="https://images.unsplash.com/photo-1556911220-bff31c812dba"
+          alt="Recipe"
+        />
+      </div>
 
-    <div className="right-side">
-      <div className="authBox">
-        <form onSubmit={handleSubmit(handleSignup)}>
-          <h1>Create Account</h1>
+      <div className="right-side">
+        <div className="authBox">
+          <form onSubmit={handleSubmit(handleSignup)}>
+            <h1>Create Account</h1>
 
-          <p>Join us today</p>
+            <p>Join us today</p>
 
-          <input
-            type="text"
-            placeholder="Name"
-            {...register("name")}
-          />
+            <input type="text" placeholder="Name" {...register("name")} />
 
-          {errors.name && (
-            <p className="error">
-              {errors.name.message}
-            </p>
-          )}
+            {errors.name && <p className="error">{errors.name.message}</p>}
 
-          <input
-            type="email"
-            placeholder="Email"
-            {...register("email")}
-          />
+            <input type="email" placeholder="Email" {...register("email")} />
 
-          {errors.email && (
-            <p className="error">
-              {errors.email.message}
-            </p>
-          )}
+            {errors.email && <p className="error">{errors.email.message}</p>}
 
-          <input
-            type="password"
-            placeholder="Password"
-            {...register("password")}
-          />
+            <input
+              type="password"
+              placeholder="Password"
+              {...register("password")}
+            />
 
-          {errors.password && (
-            <p className="error">
-              {errors.password.message}
-            </p>
-          )}
+            {errors.password && (
+              <p className="error">{errors.password.message}</p>
+            )}
 
-          <button
-            className="auth-btn"
-            type="submit"
-          >
-            Sign Up
-          </button>
+            <button className="auth-btn" type="submit">
+              Sign Up
+            </button>
 
-          <div className="bottom-link">
-            Already have an account?{" "}
-            <Link to="/login">
-              Login
-            </Link>
-          </div>
-        </form>
+            <div className="bottom-link">
+              Already have an account? <Link to="/login">Login</Link>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-);
-
-    
-         
-     
-
-    
-
-
-
-   
+  );
 };
 
 export default Signup;

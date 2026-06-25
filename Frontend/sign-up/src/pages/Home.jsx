@@ -8,9 +8,7 @@ import RecipeCard from "../components/recipe-card";
 const Home = () => {
   const dispatch = useDispatch();
 
-  const { recipes, loading } = useSelector(
-    (state) => state.recipe
-  );
+  const { recipes, loading } = useSelector((state) => state.recipe);
 
   useEffect(() => {
     dispatch(getRecipesThunk());
@@ -18,7 +16,6 @@ const Home = () => {
 
   return (
     <div className="home-container">
-
       <div className="home-banner">
         <img
           src="https://images.unsplash.com/photo-1504674900247-0877df9cc836"
@@ -27,42 +24,30 @@ const Home = () => {
       </div>
 
       <div className="home-header">
-
         <div>
           <h1>Recipe Management</h1>
 
-          <p>
-            Create, manage and organize your recipes
-          </p>
+          <p>Create, manage and organize your recipes</p>
         </div>
 
         <div className="home-actions">
           <Link to="/create-recipe">
-            <button className="home-btn">
-              Create Recipe
-            </button>
+            <button className="home-btn">Create Recipe</button>
           </Link>
         </div>
-
       </div>
 
       {loading ? (
         <p>Loading...</p>
       ) : recipes.length === 0 ? (
-        <p className="no-recipe">
-          No recipes found
-        </p>
+        <p className="no-recipe">No recipes found</p>
       ) : (
         <div className="recipe-grid">
           {recipes.map((recipe) => (
-            <RecipeCard
-              key={recipe._id}
-              recipe={recipe}
-            />
+            <RecipeCard key={recipe._id} recipe={recipe} />
           ))}
         </div>
       )}
-
     </div>
   );
 };

@@ -8,16 +8,11 @@ import { Toaster } from "react-hot-toast";
 
 import { store, persistor } from "./redux/store";
 
-ReactDOM.createRoot(
-  document.getElementById("root")
-).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <PersistGate
-      loading={null}
-      persistor={persistor}
-    >
+    <PersistGate loading={null} persistor={persistor}>
       <App />
       <Toaster />
     </PersistGate>
-  </Provider>
+  </Provider>,
 );

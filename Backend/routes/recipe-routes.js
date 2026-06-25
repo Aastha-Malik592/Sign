@@ -2,137 +2,84 @@ const express = require("express");
 
 const router = express.Router();
 
+const authMiddleware = require("../middleware/auth-middleware");
 
-const authMiddleware =
-require("../middleware/auth-middleware");
-
-
-const upload =
-require("../middleware/upload");
-
+const upload = require("../middleware/upload");
 
 const {
+  createRecipe,
 
-createRecipe,
+  getRecipes,
 
-getRecipes,
+  getRecipeById,
 
-getRecipeById,
+  updateRecipe,
 
-updateRecipe,
+  deleteRecipe,
 
-deleteRecipe,
+  favoriteRecipe,
 
-favoriteRecipe,
-
-getFavoriteRecipes
-
-}=require("../controller/recipe-controller");
-
-
-
-
+  getFavoriteRecipes,
+} = require("../controller/recipe-controller");
 
 router.post(
+  "/create",
 
-"/create",
+  authMiddleware,
 
-authMiddleware,
+  upload.single("image"),
 
-upload.single("image"),
-
-createRecipe
-
+  createRecipe,
 );
-
-
-
-
-
 
 router.get(
+  "/",
 
-"/",
+  authMiddleware,
 
-authMiddleware,
-
-getRecipes
-
+  getRecipes,
 );
-
-
-
-
 
 router.get(
+  "/:id",
 
-"/:id",
+  authMiddleware,
 
-authMiddleware,
-
-getRecipeById
-
+  getRecipeById,
 );
-
-
-
-
 
 router.put(
+  "/:id",
 
-"/:id",
+  authMiddleware,
 
-authMiddleware,
+  upload.single("image"),
 
-upload.single("image"),
-
-updateRecipe
-
+  updateRecipe,
 );
-
-
-
-
-
 
 router.delete(
+  "/:id",
 
-"/:id",
+  authMiddleware,
 
-authMiddleware,
-
-deleteRecipe
-
+  deleteRecipe,
 );
-
-
-
-
-
 
 router.patch(
+  "/favorite/:id",
 
-"/favorite/:id",
+  authMiddleware,
 
-authMiddleware,
-
-favoriteRecipe
-
+  favoriteRecipe,
 );
-
-
-
 
 router.get(
+  "/favorites",
 
-"/favorites",
+  authMiddleware,
 
-authMiddleware,
-
-getFavoriteRecipes
-
+  getFavoriteRecipes,
 );
-
-
 
 module.exports = router;
