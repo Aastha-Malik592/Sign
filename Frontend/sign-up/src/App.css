@@ -1,6 +1,4 @@
-/* =========================
-   GLOBAL
-========================= */
+
 
 * {
   margin: 0;
@@ -13,9 +11,7 @@ body {
   background: linear-gradient(135deg, #f8fafc, #eef2ff);
 }
 
-/* =========================
-   AUTH PAGE
-========================= */
+
 
 .authContainer {
   height: 100vh;
@@ -146,9 +142,7 @@ body {
   font-weight: bold;
 }
 
-/* =========================
- HOME DASHBOARD
-========================= */
+
 
 .home-container {
   min-height: 100vh;
@@ -252,9 +246,7 @@ body {
   transform: translateY(-3px);
 }
 
-/* =========================
- BANNER
-========================= */
+
 
 .home-banner {
   margin-bottom: 30px;
@@ -272,9 +264,7 @@ body {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* =========================
- SEARCH
-========================= */
+
 
 .search-box {
   width: 100%;
@@ -296,9 +286,7 @@ body {
   border-color: #4f46e5;
 }
 
-/* =========================
- RECIPE GRID
-========================= */
+
 
 .recipe-grid {
   display: grid;
@@ -374,9 +362,7 @@ body {
   font-weight: bold;
 }
 
-/* =========================
- ACTION BUTTONS
-========================= */
+
 
 .recipe-actions {
   display: flex;
@@ -419,9 +405,7 @@ body {
   transform: translateY(-3px);
 }
 
-/* =========================
- RECIPE FORM
-========================= */
+
 
 .recipe-form-container {
   min-height: 100vh;
@@ -509,9 +493,7 @@ body {
   font-weight: bold;
 }
 
-/* =========================
- SCROLLBAR
-========================= */
+
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -523,9 +505,7 @@ body {
   border-radius: 10px;
 }
 
-/* =========================
- MOBILE
-========================= */
+
 
 @media (max-width: 768px) {
   .authContainer {
